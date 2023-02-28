@@ -1,3 +1,3 @@
 
-void limpiar_pantalla();
-unsigned int imprimir_pantalla(char *);
+void clear_screen();
+unsigned int print_screen(char *);

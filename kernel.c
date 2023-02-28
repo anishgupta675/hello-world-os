@@ -2,61 +2,61 @@
 #include "screen.h"
 
 
-#define TXT_BLANCO 0x07 //blanco sobre negro
+#define TXT_WHITE 0x07 //blanco sobre negro
 
 
-char *memoria_video = (char *) 0xb8000;
+char *video_memory = (char *) 0xb8000;
 
-unsigned int linea = 0;
+unsigned int line = 0;
 
 void kernel_main(){
-    limpiar_pantalla();
+    clear_screen();
 
 
-    imprimir_pantalla(".__           .__");
-    imprimir_pantalla("|  |__   ____ |  | _____              ____  ______");
-    imprimir_pantalla("|  |  \\ /  _ \\|  | \\__  \\    ______  /  _ \\/  ___/");
-    imprimir_pantalla("|   Y  (  <_> )  |__/ __ \\_ /_____/ (  <_> )___ \\");
-    imprimir_pantalla("|___|  /\\____/|____(____  /          \\____/____  >");
-    imprimir_pantalla("\\/                 \\/                     \\/");
+    print_screen(".__           .__");
+    print_screen("|  |__   ____ |  | _____              ____  ______");
+    print_screen("|  |  \\ /  _ \\|  | \\__  \\    ______  /  _ \\/  ___/");
+    print_screen("|   Y  (  <_> )  |__/ __ \\_ /_____/ (  <_> )___ \\");
+    print_screen("|___|  /\\____/|____(____  /          \\____/____  >");
+    print_screen("\\/                 \\/                     \\/");
 
 
 }
 
 
 
-void limpiar_pantalla(){
+void clear_screen(){
     unsigned int i = 0;
     while (i < (80*25*2)){
-        memoria_video[i] = ' ';
+        video_memory[i] = ' ';
         i++;
-        memoria_video[i] = TXT_BLANCO;
+        video_memory[i] = TXT_WHITE;
         i++;
     }
 }
 
 
 
-unsigned int imprimir_pantalla(char *string){
+unsigned int print_screen(char *string){
 
     unsigned int i = 0;
 
-    i = (linea*80*2);
+    i = (line*80*2);
 
     while(*string != 0){
         if (*string == '\n'){
-            linea++;
-            i = (linea*80*2);
+            line++;
+            i = (line*80*2);
             *string++;
         } else {
-            memoria_video[i] = *string;
+            video_memory[i] = *string;
             *string++;
             i++;
-            memoria_video[i] = TXT_BLANCO;
+            video_memory[i] = TXT_WHITE;
             i++;
         }
     }
-    linea++;
+    line++;
 
     return(1);
 }

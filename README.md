@@ -1,7 +1,7 @@
 hello-world-os
 ==============
 
-Existe una version de este documento en [español](https://github.com/fdipilla/hello-world-os/blob/master/README.es.md)
+There is a version of this document in [español](https://github.com/fdipilla/hello-world-os/blob/master/README.es.md)
 
 Simplest OS ever.
 Also useless, but the idea is to get a basic aproach of how to start on OS development.
